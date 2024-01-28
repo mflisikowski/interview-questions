@@ -46,12 +46,60 @@ model VerificationToken {
 }
 
 model User {
-  id               String    @id @default(uuid())
+  id               String         @id @default(uuid())
   name             String?
-  email            String?   @unique
+  email            String?        @unique
   emailVerified    DateTime?
   image            String?
   accounts         Account[]
   sessions         Session[]
-  registrationDate DateTime  @default(now())
+  registrationDate DateTime       @default(now())
+  progress         UserProgress[]
+}
+
+model Position {
+  id        String     @id @default(uuid())
+  name      String
+  questions Question[]
+}
+
+model Question {
+  id                String              @id @default(uuid())
+  content           String
+  answer            String
+  difficulty        DifficultyLevelEnum
+  positionId        String
+  position          Position            @relation(fields: [positionId], references: [id])
+  translatedAnswers TranslatedAnswer[]
+  UserProgress      UserProgress[]
+}
+
+model UserProgress {
+  id           String             @id @default(uuid())
+  userId       String
+  questionId   String
+  status       ProgressStatusEnum
+  lastActivity DateTime           @default(now())
+  question     Question           @relation(fields: [questionId], references: [id])
+  user         User               @relation(fields: [userId], references: [id])
+}
+
+model TranslatedAnswer {
+  id             String   @id @default(uuid())
+  questionId     String
+  language       String
+  translatedText String
+  question       Question @relation(fields: [questionId], references: [id])
+}
+
+enum DifficultyLevelEnum {
+  JUNIOR
+  REGULAR
+  SENIOR
+}
+
+enum ProgressStatusEnum {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
 }
