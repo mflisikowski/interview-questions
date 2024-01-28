@@ -1,18 +1,27 @@
-import AuthButton from "../components/AuthButton";
+import Logo from "@/components/logo";
+import AuthUserImage from "@/components/auth/auth-user-image";
+import AuthButton from "@/components/auth/auth-button";
 
 export default async function Home() {
   return (
-    <div className="flex-1 w-full flex flex-col gap-20 items-center">
-      <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-        <div className="w-full max-w-4xl flex justify-center items-center p-3 text-sm">
-          <AuthButton/>
-        </div>
-      </nav>
+    <>
+      <header>
+        <nav className="flex items-center justify-between p-6 lg:px-8">
+          <div className="flex lg:flex-1">
+            <Logo className="-m-1.5 p-1.5"/>
+          </div>
 
-      <div className="flex-1 flex flex-col gap-20 max-w-4xl px-3">
+          <div className="lg:flex lg:gap-x-1"></div>
+
+          <div className="lg:flex lg:flex-1 lg:justify-end lg:gap-x-1">
+            <AuthUserImage/>
+            <AuthButton/>
+          </div>
+        </nav>
+      </header>
+
+      <main className="min-h-screen flex flex-col items-center">
         <div className="flex flex-col gap-16 items-center">
-          <h1 className="sr-only">Interview Questions App</h1>
-
           <p className="text-3xl lg:text-4xl !leading-tight mx-auto max-w-lg text-center">
             The fastest way to learn all the
             <span className="font-bold hover:underline">{ " " }interview questions{ " " }</span>
@@ -21,7 +30,7 @@ export default async function Home() {
             to increase your chances of getting hired.
           </p>
         </div>
-      </div>
-    </div>
+      </main>
+    </>
   );
 }
