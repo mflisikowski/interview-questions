@@ -1,19 +1,11 @@
-import type { ClientSafeProvider } from "next-auth/react";
-import { authProviders } from "@/utils/next-auth/providers";
+import { signInAction } from "@/actions/sign-in-action";
 import AuthProviders from "@/components/auth/auth-providers";
 import BackButton from "@/components/BackButton";
-import { signInAction } from "@/actions/sign-in-action";
 import FormLabel from "@/components/FormLabel";
 import FormInput from "@/components/FormInput";
 
-// import AuthMessage from "@/components/AuthMessage"
-// <AuthMessage searchParams={ searchParams }/>
-
 export default async function SignIn() {
-  const providers: ClientSafeProvider[] = await authProviders()
-
   return (
-
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
       <BackButton/>
 
@@ -30,11 +22,8 @@ export default async function SignIn() {
           </button>
         </form>
 
-        { providers && (
-          <>
-            <span className="block text-sm text-gray-500 my-9 text-center">Or</span>
-            <AuthProviders providers={ providers }/></>
-        ) }
+        <span className="block text-sm text-gray-500 my-9 text-center">Or</span>
+        <AuthProviders />
       </div>
     </div>
   );

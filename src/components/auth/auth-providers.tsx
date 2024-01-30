@@ -1,27 +1,36 @@
-"use client";
+"use client"
 
-import { type ClientSafeProvider, signIn, type SignInOptions } from "next-auth/react";
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
+import { authOptions } from "@/auth";
+import { signIn } from "next-auth/react";
+import { type Provider } from "@auth/core/providers";
 
-export default function AuthProviders({ providers }: { providers: ClientSafeProvider[] }): React.JSX.Element[] | null {
-  const onClickHandlerOptions: SignInOptions = {
-    callbackUrl: '/',
-    redirect: true,
-  }
+type ExtendedProvider = Provider & {
+  name: string;
+  id: string;
+}
+
+export default function AuthProviders() {
+  const providers = authOptions?.providers as ExtendedProvider[];
 
   if (!providers) {
     return null
   }
 
-  return providers.map( ( provider: ClientSafeProvider ) => (
+  const onClickHandlerOptions = {
+    callbackUrl: '/',
+    redirect: true,
+  };
+
+  return providers.map(({ id, name }) => (
     <Button
-      onClick={ () => signIn( provider.id, onClickHandlerOptions ) }
+      onClick={() => signIn(id, onClickHandlerOptions)}
       className="text-center flex m-auto gap-1"
-      key={ provider.name }
       variant="link"
+      key={name}
     >
       <span>Sign in with</span>
-      <strong>{ provider.name }</strong>
+      <strong>{name}</strong>
     </Button>
-  ) )
+  ));
 }
