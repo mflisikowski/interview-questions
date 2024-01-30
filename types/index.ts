@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface searchParamsProps {
   message: string;
 }
@@ -12,4 +14,8 @@ export interface FormInputProps {
   type: string;
   placeholder?: string;
   required?: boolean;
+}
+
+export interface AuthLayoutProps {
+  children: ReactNode;
 }
