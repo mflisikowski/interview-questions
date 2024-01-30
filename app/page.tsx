@@ -1,8 +1,8 @@
-import Logo from "@/components/logo";
 import AuthUserImage from "@/components/auth/auth-user-image";
 import AuthButton from "@/components/auth/auth-button";
+import Logo from "@/components/logo";
 
-export default async function Home() {
+const Home: React.FC = () => {
   return (
     <>
       <header>
@@ -24,13 +24,15 @@ export default async function Home() {
         <div className="flex flex-col gap-16 items-center">
           <p className="text-3xl lg:text-4xl !leading-tight mx-auto max-w-lg text-center">
             The fastest way to learn all the
-            <span className="font-bold hover:underline">{ " " }interview questions{ " " }</span>
+            <span className="font-bold hover:underline">{" "}interview questions{" "}</span>
             you need
-            <span className="font-bold hover:underline">{ " " }to know{ " " }</span>
+            <span className="font-bold hover:underline">{" "}to know{" "}</span>
             to increase your chances of getting hired.
           </p>
         </div>
       </main>
     </>
   );
-}
+};
+
+export default Home;
