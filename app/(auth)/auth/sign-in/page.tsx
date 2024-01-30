@@ -5,7 +5,7 @@ import BackButton from "@/components/BackButton";
 import FormLabel from "@/components/FormLabel";
 import FormInput from "@/components/FormInput";
 
-const SignIn: React.FC = () => {
+const AuthSignInPage: React.FC = () => {
   return (
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
       <BackButton/>
@@ -30,4 +30,4 @@ const SignIn: React.FC = () => {
   );
 };
 
-export default SignIn;
+export default AuthSignInPage;

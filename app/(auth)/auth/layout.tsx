@@ -1,8 +1,4 @@
-import React, { ReactNode } from 'react';
-
-type AuthLayoutProps = {
-  children: ReactNode;
-};
+import { AuthLayoutProps } from "@/types";
 
 const AuthLayout: React.FC<AuthLayoutProps> = ( { children } ) => {
   return (
