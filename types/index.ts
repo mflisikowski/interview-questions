@@ -16,6 +16,9 @@ export interface FormInputProps {
   required?: boolean;
 }
 
-export interface AuthLayoutProps {
+export interface WithChildren {
   children: ReactNode;
 }
+
+export interface AuthLayoutProps extends WithChildren {}
+export interface RootLayoutProps extends WithChildren {}

@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import { type RootLayoutProps } from "@/types";
+import { type Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -16,14 +17,12 @@ const inter = Inter({
   subsets: ["latin", "latin-ext"],
 });
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang="en" className={inter.className}>
-    <body>{ children }</body>
+    <body>{children}</body>
     </html>
   );
-}
+};
+
+export default RootLayout;
