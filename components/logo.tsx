@@ -1,9 +1,15 @@
+import { LayoutList } from "lucide-react";
 import Link from "next/link";
 
-export default function Logo({ className }: { className?: string }) {
+const Logo: React.FC = () => {
   return (
-    <Link href="/" className={className}>
-      <span>Interview Questions</span>
+    <Link href="/">
+      <div className="flex gap-1">
+        <LayoutList className="w-6 h-6" aria-label="Logo"/>
+        Interview questions
+      </div>
     </Link>
   );
-}
+};
+
+export default Logo;
