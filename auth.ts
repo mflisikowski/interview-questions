@@ -1,6 +1,7 @@
 import NextAuth, { type NextAuthConfig } from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import GitHub from "next-auth/providers/github";
+import Apple from "next-auth/providers/apple";
 import { prisma } from "@/prisma";
 
 export const authOptions: NextAuthConfig = {
@@ -21,6 +22,10 @@ export const authOptions: NextAuthConfig = {
     GitHub( {
       clientId: process.env.GITHUB_CLIENT_ID ?? '',
       clientSecret: process.env.GITHUB_CLIENT_SECRET ?? '',
+    } ),
+    Apple( {
+      clientId: process.env.APPLE_CLIENT_ID ?? '',
+      clientSecret: process.env.APPLE_CLIENT_SECRET ?? '',
     } ),
   ],
 
