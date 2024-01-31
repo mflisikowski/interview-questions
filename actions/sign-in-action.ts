@@ -1,24 +1,13 @@
-import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
 
 export const signInAction = async ( formData: FormData ) => {
   "use server";
 
   const password = formData.get( "password" ) as string;
-  const email = formData.get( "email" ) as string;
+  const email = formData.get( "email" ) as string
 
-  const cookieStore = cookies();
-  const supabase = createClient( cookieStore );
+  // Salt the password with base64, temporarily
+  const saltedPassword = Buffer.from( password ).toString( "base64" );
 
-  const { error } = await supabase.auth.signInWithPassword( {
-    email,
-    password,
-  } );
-
-  if (error) {
-    return redirect( "/sign-in?message=Could not authenticate user" );
-  }
-
-  return redirect( "/" );
+  return redirect( "/auth/sign-in?email=" + email + "&password=" + saltedPassword );
 };
