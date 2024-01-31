@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { User } from "lucide-react";
-import {auth} from "@/auth";
+import { auth } from "@/auth";
 
 export default async function AuthUserImage() {
   const session = await auth();
